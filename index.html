@@ -47,8 +47,14 @@
     <button class="btn" id="option2" onclick="correctAnswer()">A piece of shit</button>
     <div id="result">P.O.S... That is correct!</div>
 
-    <audio id="wrongSound" src="https://www.soundjay.com/button/beep-10.mp3" preload="auto"></audio>
-    <audio id="correctSound" src="https://www.soundjay.com/button/beep-07.mp3" preload="auto"></audio>
+    <audio id="wrongSound" preload="auto">
+        <source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="correctSound" preload="auto">
+        <source src="https://actions.google.com/sounds/v1/cartoon/cartoon_boing.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+    </audio>
 
     <script>
         let moveCount = 0;
@@ -63,7 +69,8 @@
         function moveButton() {
             moveCount++;
             flashRed();
-            document.getElementById("wrongSound").play();
+            const wrong = document.getElementById("wrongSound");
+            if (wrong) wrong.play().catch(err => console.log("Sound blocked:", err));
             const button = document.getElementById("option1");
             const distance = moveCount * 30;
             button.style.left = Math.floor(Math.random() * distance * 2 - distance) + "px";
@@ -73,7 +80,8 @@
         function correctAnswer() {
             document.getElementById("result").style.display = "block";
             document.body.style.backgroundColor = "white";
-            document.getElementById("correctSound").play();
+            const correct = document.getElementById("correctSound");
+            if (correct) correct.play().catch(err => console.log("Sound blocked:", err));
         }
     </script>
 </body>
