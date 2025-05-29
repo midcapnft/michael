@@ -23,11 +23,11 @@
             border: none;
             border-radius: 8px;
             transition: all 0.3s ease;
+            position: relative;
         }
         #option1 {
             background-color: #4CAF50;
             color: white;
-            position: relative;
         }
         #option2 {
             background-color: #f44336;
@@ -49,12 +49,21 @@
 
     <script>
         let moveCount = 0;
+
+        function flashRed() {
+            document.body.style.backgroundColor = 'red';
+            setTimeout(() => {
+                document.body.style.backgroundColor = 'white';
+            }, 300);
+        }
+
         function moveButton() {
             moveCount++;
-            document.body.style.backgroundColor = 'red';
+            flashRed();
             const button = document.getElementById("option1");
-            button.style.left = Math.floor(Math.random() * 300 - 150) + "px";
-            button.style.top = Math.floor(Math.random() * 100 - 50) + "px";
+            const distance = moveCount * 30; // move farther each time
+            button.style.left = Math.floor(Math.random() * distance * 2 - distance) + "px";
+            button.style.top = Math.floor(Math.random() * distance * 2 - distance) + "px";
         }
 
         function correctAnswer() {
