@@ -47,6 +47,9 @@
     <button class="btn" id="option2" onclick="correctAnswer()">A piece of shit</button>
     <div id="result">P.O.S... That is correct!</div>
 
+    <audio id="wrongSound" src="https://www.soundjay.com/button/beep-10.mp3" preload="auto"></audio>
+    <audio id="correctSound" src="https://www.soundjay.com/button/beep-07.mp3" preload="auto"></audio>
+
     <script>
         let moveCount = 0;
 
@@ -60,8 +63,9 @@
         function moveButton() {
             moveCount++;
             flashRed();
+            document.getElementById("wrongSound").play();
             const button = document.getElementById("option1");
-            const distance = moveCount * 30; // move farther each time
+            const distance = moveCount * 30;
             button.style.left = Math.floor(Math.random() * distance * 2 - distance) + "px";
             button.style.top = Math.floor(Math.random() * distance * 2 - distance) + "px";
         }
@@ -69,6 +73,7 @@
         function correctAnswer() {
             document.getElementById("result").style.display = "block";
             document.body.style.backgroundColor = "white";
+            document.getElementById("correctSound").play();
         }
     </script>
 </body>
