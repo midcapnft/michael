@@ -6,38 +6,50 @@
     <title>Michael Quiz</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #f1f1f1;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
-            margin-top: 100px;
-            transition: background 0.3s;
+            padding-top: 100px;
+            margin: 0;
+            transition: background-color 0.3s;
         }
         h1 {
-            font-size: 2em;
+            font-size: 2.5em;
+            margin-bottom: 40px;
         }
         .btn {
-            display: inline-block;
+            background-color: #1e88e5;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
             margin: 20px;
-            padding: 15px 25px;
+            border-radius: 12px;
             font-size: 1.2em;
             cursor: pointer;
-            border: none;
-            border-radius: 8px;
             transition: all 0.3s ease;
             position: relative;
         }
+        .btn:hover {
+            background-color: #1565c0;
+        }
         #option1 {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #43a047;
+        }
+        #option1:hover {
+            background-color: #2e7d32;
         }
         #option2 {
-            background-color: #f44336;
-            color: white;
+            background-color: #e53935;
+        }
+        #option2:hover {
+            background-color: #b71c1c;
         }
         #result {
             margin-top: 50px;
             font-size: 2em;
             display: none;
-            color: black;
+            color: #76ff03;
         }
     </style>
 </head>
@@ -47,22 +59,16 @@
     <button class="btn" id="option2" onclick="correctAnswer()">A piece of shit</button>
     <div id="result">P.O.S... That is correct!</div>
 
-    <audio id="wrongSound" preload="auto">
-        <source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" type="audio/ogg">
-        Your browser does not support the audio element.
-    </audio>
-    <audio id="correctSound" preload="auto">
-        <source src="https://actions.google.com/sounds/v1/cartoon/cartoon_boing.ogg" type="audio/ogg">
-        Your browser does not support the audio element.
-    </audio>
+    <audio id="wrongSound" src="buzzer.mp3" preload="auto"></audio>
+    <audio id="correctSound" src="chime.mp3" preload="auto"></audio>
 
     <script>
         let moveCount = 0;
 
         function flashRed() {
-            document.body.style.backgroundColor = 'red';
+            document.body.style.backgroundColor = '#b71c1c';
             setTimeout(() => {
-                document.body.style.backgroundColor = 'white';
+                document.body.style.backgroundColor = '#121212';
             }, 300);
         }
 
@@ -79,7 +85,7 @@
 
         function correctAnswer() {
             document.getElementById("result").style.display = "block";
-            document.body.style.backgroundColor = "white";
+            document.body.style.backgroundColor = "#121212";
             const correct = document.getElementById("correctSound");
             if (correct) correct.play().catch(err => console.log("Sound blocked:", err));
         }
